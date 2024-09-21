@@ -6,6 +6,7 @@ EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
+ARG MIGRATE
 WORKDIR /src
 COPY ["AcampJovens.Api/AcampJovens.Api.csproj", "AcampJovens.Api/"]
 COPY ["AcampJovens.Application/AcampJovens.Application.csproj", "AcampJovens.Application/"]
@@ -21,7 +22,12 @@ FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "AcampJovens.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-FROM base AS final
+FROM build AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="$PATH:/root/.dotnet/tools"
+ENV RUN_MIGRATE=${MIGRATE}
+COPY [".", "/app/AcampJovens"]
 ENTRYPOINT ["dotnet", "AcampJovens.Api.dll"]

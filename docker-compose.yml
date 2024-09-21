@@ -1,0 +1,34 @@
+﻿services:
+  acampjovens.api:
+    image: acampjovens.api
+    container_name: acampjovens.api
+    build:
+      context: .
+      dockerfile: AcampJovens.Api/Dockerfile
+    ports:
+      - "3002:8080"
+    networks:
+      - acampjovens.net
+    environment:
+      DB_SERVER: acampjovens.db
+      DB_NAME: "acampjovens"
+      DB_USER: "dev"
+      DB_PASSWORD: "yma2578k"
+      DB_PORT: 5432
+  
+  acampjovens.db:
+    image: postgres
+    container_name: acampjovens.db
+    environment:
+      POSTGRES_DB: "acampjovens"
+      POSTGRES_USER: "dev"
+      POSTGRES_PASSWORD: "yma2578k"
+    ports:
+      - "3001:5432"
+    networks:
+      - acampjovens.net
+  
+  
+networks:
+  acampjovens.net:
+    driver: bridge

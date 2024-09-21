@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  acampjovens.api:
+    build:
+      context: "/Users/raffdevs/RiderProjects/AcampJovens"
+      dockerfile: "AcampJovens.Api/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/AcampJovens.Api.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "acampjovens.api:dev"
+    ports: []
+    volumes:
+    - "/Users/raffdevs/.nuget/packages:/home/app/.nuget/packages"
+    - "/Users/raffdevs/RiderProjects/AcampJovens/AcampJovens.Api:/app:rw"
+    - "/Users/raffdevs/RiderProjects/AcampJovens:/src:rw"
+    working_dir: "/app"
