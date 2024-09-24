@@ -3,6 +3,7 @@ using System;
 using AcampJovens.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AcampJovens.Infrastructure.Migrations
 {
     [DbContext(typeof(AcampJovensDbContext))]
-    partial class AcampJovensDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240922191307_AddCamperTable")]
+    partial class AddCamperTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,7 +75,7 @@ namespace AcampJovens.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Campers");
+                    b.ToTable("Camper");
                 });
 
             modelBuilder.Entity("AcampJovens.Core.Entities.Message", b =>

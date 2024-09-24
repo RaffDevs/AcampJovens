@@ -13,4 +13,9 @@ public class Audio : BaseEntity
         MessageId = messageId;
         Guid = Guid.NewGuid();
     }
+
+    public void Update(string audioBase64)
+    {
+        AudioBase64 = audioBase64;
+    }
 }

@@ -10,6 +10,7 @@ public class AcampJovensDbContext : DbContext
     
     public DbSet<Message> Messages { get; set; }
     public DbSet<Audio> Audios { get; set; }
+    public DbSet<Camper> Campers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

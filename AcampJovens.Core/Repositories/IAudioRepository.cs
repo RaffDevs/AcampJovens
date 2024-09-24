@@ -6,6 +6,6 @@ public interface IAudioRepository
 {
     Task<Audio> GetByIdAsync(int id);
     Task<Audio> CreateAsync(Audio audio);
-    Task UpdateAsync(int id, Audio audio);
-    Task DeleteAsync(int id);
+    Task UpdateAsync( Audio audio);
+    Task DeleteAsync(Audio audio);
 }
