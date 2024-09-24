@@ -1,5 +1,6 @@
 using AcampJovens.Core.Entities;
 using AcampJovens.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace AcampJovens.Infrastructure.Repositories;
 
@@ -15,6 +16,11 @@ public class CamperRepository : ICamperRepository
     public async Task<Camper?> GetByIdAsync(int id)
     {
         return await _context.Campers.FindAsync(id);
+    }
+
+    public async Task<List<Camper>> GetAllAsync()
+    {
+        return await _context.Campers.ToListAsync();
     }
 
     public async Task<Camper> CreateAsync(Camper camper)
