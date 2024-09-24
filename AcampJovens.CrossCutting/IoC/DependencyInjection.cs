@@ -1,4 +1,6 @@
+using AcampJovens.Core.Repositories;
 using AcampJovens.Infrastructure;
+using AcampJovens.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,6 +37,15 @@ public static class DependencyInjection
         {
             options.UseNpgsql(connectionString);
         });
+
+        return services;
+    }
+
+    public static IServiceCollection AddCoreService(this IServiceCollection services)
+    {
+        services.AddScoped<ICamperRepository, CamperRepository>();
+        services.AddScoped<IMessageRepository, MessageRepository>();
+        services.AddScoped<IAudioRepository, AudioRepository>();
 
         return services;
     }
